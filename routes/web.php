@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return response()->json([
-        'message' => 'Remedic Api con AUTOPULL!'
+        'message' => 'Remedic Api con AUTOPULL DI NUOVO!'
     ]);
 });
 
