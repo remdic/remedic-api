@@ -16,11 +16,3 @@ $app = require_once __DIR__ . '/bootstrap/app.php';
 $status = $app->handleCommand(new ArgvInput);
 
 exit($status);
-
-// username
-// b1ca3de
-//password
-// sZMPLg81ZaGd
-
-
-ok
