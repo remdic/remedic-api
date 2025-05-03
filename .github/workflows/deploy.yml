@@ -18,4 +18,4 @@ jobs:
           mkdir -p ~/.ssh
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan -p 10223 remedic.it >> ~/.ssh/known_hosts
+          ssh-keyscan -p 10223 remedic.it
