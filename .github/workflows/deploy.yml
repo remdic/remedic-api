@@ -1,34 +1,18 @@
-name: SSH Setup and Connection
+name: Deploy to Serverplan
 
 on:
   push:
     branches:
-      - main
+      - main # o il branch che usi
 
 jobs:
-  ssh-setup:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
-      - name: Set up SSH keys
+      - name: Set up SSH
         run: |
-          # Crea la cartella SSH se non esiste
-          mkdir -p ~/.ssh
-
-          # Aggiungi la chiave privata SSH
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-
-          # Aggiungi la chiave pubblica del server al file known_hosts
-          ssh-keyscan -p 10223 remedic.it >> ~/.ssh/known_hosts
-
-          # Verifica il contenuto del file known_hosts
-          cat ~/.ssh/known_hosts  # Debug per vedere se è stato aggiunto correttamente
-
-      - name: Test SSH connection
-        run: |
-          # Testa la connessione SSH
-          ssh -v -p 10223 mremedik@remedic.it "echo 'SSH connection successful'"
+          ssh-keyscan -v -p 10223 remedic.it
