@@ -15,6 +15,3 @@ Route::get('/test', function () {
         'message' => 'API funzionante!'
     ]);
 });
-
-
-// ciao
