@@ -13,6 +13,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Deploy via SSH
+      - name: Set up SSH
         run: |
-          "cd /home/mremedik/public_html/api && git pull origin main && composer install --no-dev --prefer-dist && php artisan migrate --force"
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan remedic.it >> ~/.ssh/known_hosts
