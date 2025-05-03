@@ -15,4 +15,4 @@ jobs:
 
       - name: Deploy via SSH
         run: |
-          ssh remedic "cd /home/mremedik/public_html/api && git pull origin main && composer install --no-dev --prefer-dist && php artisan migrate --force"
+          "cd /home/mremedik/public_html/api && git pull origin main && composer install --no-dev --prefer-dist && php artisan migrate --force"
