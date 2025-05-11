@@ -3,9 +3,12 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Enums\Gender;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
+
 
 class User extends Authenticatable
 {
@@ -18,9 +21,19 @@ class User extends Authenticatable
      * @var list<string>
      */
     protected $fillable = [
-        'name',
+        'mobile',
         'email',
         'password',
+        'first_name',
+        'last_name',
+        'tin',
+        'date_of_birth',
+        'country_of_birth',
+        'gender',
+        'billing_address',
+        'postal_code',
+        'city',
+        'country',
     ];
 
     /**
@@ -30,7 +43,6 @@ class User extends Authenticatable
      */
     protected $hidden = [
         'password',
-        'remember_token',
     ];
 
     /**
@@ -42,7 +54,14 @@ class User extends Authenticatable
     {
         return [
             'email_verified_at' => 'datetime',
+            'mobile_verified_at' => 'datetime',
             'password' => 'hashed',
+            'gender' => Gender::class
         ];
+    }
+
+    public function privacyConsent(): HasOne
+    {
+        return $this->hasOne(PrivacyConsent::class);
     }
 }
